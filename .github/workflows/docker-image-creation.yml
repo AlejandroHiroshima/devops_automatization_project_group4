@@ -5,7 +5,7 @@ on:
     workflows: [ "python tests" ]
     types:
       - completed
-      
+
 env:
   REPO: alejandrohiroshima/alejandro
 
@@ -35,4 +35,4 @@ jobs:
           push: True
           tags: |
             ${{ env.REPO }}:latest
-            ${{ env.REPO }}:${{ github.run_number }}
+            ${{ env.REPO }}:${{ github.run_number }} 
