@@ -7,7 +7,7 @@ variable "location" {
 variable "prefix_app_name" {
   description = "Name prefix for resources"
   type        = string
-  default     = "AH_DevOps_Pipeline"
+  default     = "ah-devops-pipeline"
 }
 
 variable "owner" {
