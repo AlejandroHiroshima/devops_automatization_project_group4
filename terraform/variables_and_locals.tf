@@ -19,8 +19,6 @@ variable "owner" {
 variable "subscription_id" {
   description = "Azure subscription ID"
   type        = string
-  default     = "80f1ebe5-8470-4115-8204-ba8fdcc457fc"
-
 }
 
 resource "random_string" "suffix" {
