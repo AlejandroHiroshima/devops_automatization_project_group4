@@ -38,7 +38,7 @@ jobs:
         working-directory: ./terraform
 
       - name: Terraform plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan -var="subscription_id=${{ secrets.AZURE_SUBSCRIPTION_ID }}"
         working-directory: ./terraform
       
       - name: Terraform apply
