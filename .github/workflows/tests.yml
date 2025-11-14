@@ -4,7 +4,15 @@ on:
   push:
     branches: [ "main"]
   workflow_dispatch: 
-
+    inputs:
+      create_artefakt:
+        description: 'Do you want to create an artefakt if tests fails?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,4 +32,21 @@ jobs:
           pip install --no-cache-dir -r requirements.txt
 
       - name: run tests
-        run: pytest -v
+        id: tests
+        shell: bash
+        run: | 
+          set +e
+          pytest -v > artefakt.log
+          echo "result=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+          set -e
+
+      - name: Upload artefakt if failure
+        if: ${{ github.event.inputs.create_artefakt == 'true' && steps.tests.outputs.result != '0' }}    
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-log
+          path: artefakt.log
+
+      - name: Fail if tests failed
+        if: ${{ steps.tests.outputs.result != '0' }}
+        run: exit 1
