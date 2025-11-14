@@ -72,7 +72,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
       
       - name: display build info
-        run: echo "Building and pushing image from: ${{ github.ref }} to dockerhub repo: ${{ env.REPO }} - run number: ${{ github.run_number }}"
+        run: |
+          echo Building and pushing image from: ${{ github.ref }} 
+          echo to dockerhub repo: ${{ env.REPO }}
+          echo run number: ${{ github.run_number }}
 
       - name: Build and push to Docker Hub
         uses: docker/build-push-action@v6
