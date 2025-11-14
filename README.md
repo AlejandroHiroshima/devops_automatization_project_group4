@@ -1,6 +1,6 @@
 # AH DevOps Pipeline (tests/docker/deploy)
 
-Välkommen till ditt DevOps-projekt! Den här pipelinen automatiserar testning, byggande av Docker-image och deployment till Azure med hjälp av GitHub Actions och Terraform.
+Välkommen till mitt DevOps-projekt! Den här pipelinen automatiserar testning, byggande av Docker-image och deployment till Azure med hjälp av GitHub Actions och Terraform.
 
 ---
 
@@ -56,4 +56,15 @@ env:
 
 I mappen ./terraform finns din Terraform-kod som skapar resurser i Azure.
 
-- 
+- Kontrollera och ändra variabler som owner, resource_group_name eller andra som finns i variables.tf eller direkt i konfigurationsfilerna så att de passar din miljö och namngivningsstandard.
+- Se till att resource_group_name inte krockar med befintliga resurser i din Azure-prenumeration, eller importera befintliga resurser i Terraform-state om du vill återanvända dem.
+
+### 4. Kör pipelinen
+
+- Vid push till main körs pipelinen automatiskt.
+- Du kan också starta den manuellt via GitHub Actions-fliken och välja om du vill skapa artifact vid testfel (create_artefakt).
+
+
+#### MVH
+
+##### Alexander Hrachovina
