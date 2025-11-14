@@ -1,4 +1,4 @@
-name: AH DevOps Pipeline (tests/docker/deploy)
+name: AH-DevOps-Pipeline-tests-docker-deploy
 
 on: 
   push:
@@ -41,7 +41,7 @@ jobs:
           set -e
 
       - name: Upload artefakt if failure
-        if: ${{ github.event.inputs.create_artefakt == 'true' && steps.tests.outputs.result != '0' }}    
+        if: ${{ inputs.create_artefakt == 'true' && steps.tests.outputs.result != '0' }}    
         uses: actions/upload-artifact@v4
         with:
           name: test-log
